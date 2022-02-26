@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 // import { TwitterContext } from '../../context/TwitterContext'
 import TweetBox from './TweetBox'
-// import Post from '../Post'
+import Post from '../Post'
 import { BsStars } from 'react-icons/bs'
 
 const style = {
