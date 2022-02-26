@@ -7,28 +7,22 @@ const style = {
     iconContainer: `text-xl mr-4`,
     textGeneral: `font-medium`,
     textActive: `font-bold`,
-  }
+}
   
-  interface SidebarOptionProps {
+interface SidebarOptionProps {
     text: String
     Icon: IconType
     isActive?: Boolean
     setSelected?: Dispatch<SetStateAction<String>>
     redirect?: URL | string
-  }
+}
   
-  function SidebarOption({
-    text,
-    Icon,
-    isActive,
-    setSelected,
-    redirect,
-  }: SidebarOptionProps) {
+function SidebarOption({ text, Icon, isActive, setSelected, redirect }: SidebarOptionProps) {
     const router = useRouter()
   
-    const handleClick = (buttonText = text) => {
-      if (buttonText !== 'More' && setSelected) {
-        setSelected(buttonText)
+    const handleClick = (text: String) => {
+      if (text !== 'More' && setSelected) {
+        setSelected(text)
       } else return
     }
   

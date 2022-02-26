@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Sidebar from '../components/Sidebar'
 
 const style = {
   wrapper: `flex justify-center h-screen w-screen select-none bg-[#15202b] text-white`,
@@ -11,7 +12,7 @@ const style = {
 const Home = () => {
   return (
     <div className={style.wrapper}> 
-      Hello world
+      <Sidebar initialSelectedIcon={'Profile'} />
     </div>
   )
 }
