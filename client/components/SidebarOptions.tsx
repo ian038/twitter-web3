@@ -37,10 +37,10 @@ function SidebarOption({ text, Icon, isActive, setSelected, redirect }: SidebarO
             }}
         >
             <div className={style.iconContainer}>
-            <Icon />
+                <Icon />
             </div>
             <div className={`${isActive ? style.textActive : style.textGeneral}`}>
-            {text}
+                {text}
             </div>
         </div>
     )

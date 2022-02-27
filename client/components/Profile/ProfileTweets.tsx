@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useTwitterContext } from '../../context/TwitterContext'
 import Post from '../Post'
 
 const style = {
@@ -22,12 +23,8 @@ interface Author {
 }
 
 const ProfileTweets = () => {
-  const [tweets, setTweets] = useState<Tweets>([
-    {
-      timestamp: '',
-      tweet: ''
-    }
-  ])
+  const { currentUser } = useTwitterContext()
+  const [tweets, setTweets] = useState<Tweets>([{ timestamp: '', tweet: '' }])
   const [author, setAuthor] = useState<Author>({
     name: '',
     profileImage: '',
@@ -35,17 +32,17 @@ const ProfileTweets = () => {
     isProfileImageNft: undefined
   })
 
-//   useEffect(() => {
-//     if (!currentUser) return
+  useEffect(() => {
+    if (!currentUser) return
 
-//     setTweets(currentUser.tweets)
-//     setAuthor({
-//       name: currentUser.name,
-//       profileImage: currentUser.profileImage,
-//       walletAddress: currentUser.walletAddress,
-//       isProfileImageNft: currentUser.isProfileImageNft,
-//     })
-//   }, [currentUser])
+    setTweets(currentUser.tweets)
+    setAuthor({
+      name: currentUser.name,
+      profileImage: currentUser.profileImage,
+      walletAddress: currentUser.walletAddress,
+      isProfileImageNft: currentUser.isProfileImageNft,
+    })
+  }, [currentUser])
 
   return (
     <div className={style.wrapper}>

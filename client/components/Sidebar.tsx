@@ -8,14 +8,16 @@ import { HiOutlineMail, HiMail } from 'react-icons/hi'
 import { FaRegListAlt, FaHashtag, FaBell } from 'react-icons/fa'
 import { CgMoreO } from 'react-icons/cg'
 import { VscTwitter } from 'react-icons/vsc'
-// import Modal from 'react-modal'
-// import { customStyles } from '../utils/constants'
+import Modal from 'react-modal'
+import { customStyles } from '../utils/constants'
+import ProfileImageMinter from './Profile/mintingModal/ProfileImageMinter'
 import {
   BsBookmark,
   BsBookmarkFill,
   BsPerson,
   BsPersonFill,
 } from 'react-icons/bs'
+import { useTwitterContext } from '../context/TwitterContext'
 
 const style = {
   wrapper: `flex-[0.7] px-8 flex flex-col`,
@@ -37,6 +39,7 @@ interface SidebarProps {
 }
 
 function Sidebar({ initialSelectedIcon }: SidebarProps) {
+  const { currentAccount, currentUser } = useTwitterContext()
   const [selected, setSelected] = useState<String>(initialSelectedIcon)
   const router = useRouter()
 
@@ -91,7 +94,45 @@ function Sidebar({ initialSelectedIcon }: SidebarProps) {
           redirect={'/profile'}
         />
         <SidebarOption Icon={CgMoreO} text='More' />
+        <div
+          onClick={() => router.push(`${router.pathname}/?mint=${currentAccount}`)}
+          className={style.tweetButton}
+        >
+          Mint
+        </div>
       </div>
+      <div className={style.profileButton}>
+        <div className={style.profileLeft}>
+          <img
+            src={currentUser.profileImage}
+            alt='profile'
+            className={
+              currentUser.isProfileImageNft
+                ? `${style.profileImage} smallHex`
+                : style.profileImage
+            }
+          />
+        </div>
+        <div className={style.profileRight}>
+          <div className={style.details}>
+            <div className={style.name}>{currentUser.name}</div>
+            <div className={style.handle}>
+              @{currentAccount.slice(0, 6)}...{currentAccount.slice(39)}
+            </div>
+          </div>
+          <div className={style.moreContainer}>
+            <FiMoreHorizontal />
+          </div>
+        </div>
+      </div>
+
+      <Modal
+        isOpen={Boolean(router.query.mint)}
+        onRequestClose={() => router.back()}
+        style={customStyles}
+      >
+        <ProfileImageMinter />
+      </Modal>
     </div>
   )
 }

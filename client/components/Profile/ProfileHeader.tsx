@@ -2,8 +2,7 @@ import { useEffect, useState } from 'react'
 import { BsArrowLeftShort } from 'react-icons/bs'
 import { useRouter } from 'next/router'
 import Modal from 'react-modal'
-import ProfileImageMinter from './mintingModal/ProfileImageMinter'
-import { customStyles } from '../../utils/constants'
+import { useTwitterContext } from '../../context/TwitterContext'
 
 Modal.setAppElement('#__next')
 
@@ -39,6 +38,7 @@ interface UserData {
 }
 
 const ProfileHeader = () => {
+  const { currentUser, currentAccount } = useTwitterContext()
   const router = useRouter()
   const [userData, setUserData] = useState<UserData>({
     name: '',
@@ -49,18 +49,18 @@ const ProfileHeader = () => {
     isProfileImageNft: undefined,
   })
 
-//   useEffect(() => {
-//     if (!currentUser) return
+  useEffect(() => {
+    if (!currentUser) return
 
-//     setUserData({
-//       name: currentUser.name,
-//       profileImage: currentUser.profileImage,
-//       walletAddress: currentUser.walletAddress,
-//       coverImage: currentUser.coverImage,
-//       tweets: currentUser.tweets,
-//       isProfileImageNft: currentUser.isProfileImageNft,
-//     })
-//   }, [currentUser])
+    setUserData({
+      name: currentUser.name,
+      profileImage: currentUser.profileImage,
+      walletAddress: currentUser.walletAddress,
+      coverImage: currentUser.coverImage,
+      tweets: currentUser.tweets,
+      isProfileImageNft: currentUser.isProfileImageNft,
+    })
+  }, [currentUser])
 
   return (
     <div className={style.wrapper}>
@@ -82,20 +82,12 @@ const ProfileHeader = () => {
           className={style.coverPhoto}
         />
       </div>
-      {/* <div className={style.profileImageContainer}>
-        <div
-          className={
-            currentUser.isProfileImageNft ? 'hex' : style.profileImageContainer
-          }
-        >
+      <div className={style.profileImageContainer}>
+        <div className={ currentUser.isProfileImageNft ? 'hex' : style.profileImageContainer }>
           <img
             src={userData.profileImage}
             alt={userData.walletAddress}
-            className={
-              currentUser.isProfileImageNft
-                ? style.profileImageNft
-                : style.profileImage
-            }
+            className={ currentUser.isProfileImageNft ? style.profileImageNft : style.profileImage }
           />
         </div>
       </div>
@@ -110,7 +102,7 @@ const ProfileHeader = () => {
             </>
           )}
         </div>
-      </div> */}
+      </div>
       <div className={style.nav}>
         <div className={style.activeNav}>Tweets</div>
         <div>Tweets & Replies</div>

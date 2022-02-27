@@ -1,5 +1,4 @@
-import { useEffect } from 'react'
-// import { TwitterContext } from '../../context/TwitterContext'
+import { useTwitterContext } from '../../context/TwitterContext'
 import TweetBox from './TweetBox'
 import Post from '../Post'
 import { BsStars } from 'react-icons/bs'
@@ -24,6 +23,8 @@ interface TweetAuthor {
 }
 
 function Feed() {
+  const { tweets } = useTwitterContext()
+
   return (
     <div className={`${style.wrapper} no-scrollbar`}>
       <div className={style.header}>
@@ -31,7 +32,7 @@ function Feed() {
         <BsStars />
       </div>
       <TweetBox />
-      {/* {tweets.map((tweet: Tweet, index: number) => (
+      {tweets.map((tweet: Tweet, index: number) => (
         <Post
           key={index}
           displayName={
@@ -51,7 +52,7 @@ function Feed() {
           isProfileImageNft={tweet.author.isProfileImageNft}
           timestamp={tweet.timestamp}
         />
-      ))} */}
+      ))}
     </div>
   )
 }

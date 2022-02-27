@@ -1,10 +1,10 @@
 import { useState } from 'react'
-// import { TwitterContext } from '../../context/TwitterContext'
 import { BsCardImage, BsEmojiSmile } from 'react-icons/bs'
 import { RiFileGifLine, RiBarChartHorizontalFill } from 'react-icons/ri'
 import { IoMdCalendar } from 'react-icons/io'
 import { MdOutlineLocationOn } from 'react-icons/md'
-// import { client } from '../../lib/client'
+import { client } from '../../utils/sanity'
+import { useTwitterContext } from '../../context/TwitterContext'
 
 const style = {
   wrapper: `px-4 flex flex-row border-b border-[#38444d] pb-4`,
@@ -21,55 +21,56 @@ const style = {
 }
 
 function TweetBox() {
+  const { currentAccount, currentUser, fetchTweets } = useTwitterContext()
   const [tweetMessage, setTweetMessage] = useState('')
 
   const submitTweet = async (e: any) => {
     e.preventDefault()
 
-    // if (!tweetMessage) return
-    // const tweetId = `${currentAccount}_${Date.now()}`
+    if (!tweetMessage) return
+    const tweetId = `${currentAccount}_${Date.now()}`
 
-    // const tweetDoc = {
-    //   _type: 'tweets',
-    //   _id: tweetId,
-    //   tweet: tweetMessage,
-    //   timestamp: new Date(Date.now()).toISOString(),
-    //   author: {
-    //     _key: tweetId,
-    //     _ref: currentAccount,
-    //     _type: 'reference',
-    //   },
-    // }
+    const tweetDoc = {
+      _type: 'tweets',
+      _id: tweetId,
+      tweet: tweetMessage,
+      timestamp: new Date(Date.now()).toISOString(),
+      author: {
+        _key: tweetId,
+        _ref: currentAccount,
+        _type: 'reference',
+      },
+    }
 
-    // await client.createIfNotExists(tweetDoc)
+    await client.createIfNotExists(tweetDoc)
 
-    // await client
-    //   .patch(currentAccount)
-    //   .setIfMissing({ tweets: [] })
-    //   .insert('after', 'tweets[-1]', [
-    //     {
-    //       _key: tweetId,
-    //       _ref: tweetId,
-    //       _type: 'reference',
-    //     },
-    //   ])
-    //   .commit()
+    await client
+      .patch(currentAccount)
+      .setIfMissing({ tweets: [] })
+      .insert('after', 'tweets[-1]', [
+        {
+          _key: tweetId,
+          _ref: tweetId,
+          _type: 'reference',
+        },
+      ])
+      .commit()
 
-    // await fetchTweets()
+    await fetchTweets()
     setTweetMessage('')
   }
 
   return (
     <div className={style.wrapper}>
       <div className={style.tweetBoxLeft}>
-        {/* <img
+        <img
           src={currentUser.profileImage}
           className={
             currentUser.isProfileImageNft
               ? `${style.profileImage} smallHex`
               : style.profileImage
           }
-        /> */}
+        />
       </div>
       <div className={style.tweetBoxRight}>
         <form>
@@ -90,7 +91,7 @@ function TweetBox() {
             </div>
             <button
               type='submit'
-              onClick={event => submitTweet(event)}
+              onClick={e => submitTweet(e)}
               disabled={!tweetMessage}
               className={`${style.submitGeneral} ${
                 tweetMessage ? style.activeSubmit : style.inactiveSubmit
