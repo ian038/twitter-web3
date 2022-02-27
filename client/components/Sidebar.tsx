@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { useRouter } from 'next/router'
 import SidebarOption from './SidebarOptions'
 import { RiHome7Line, RiHome7Fill, RiFileList2Fill } from 'react-icons/ri'
 import { BiHash } from 'react-icons/bi'
@@ -11,12 +10,7 @@ import { VscTwitter } from 'react-icons/vsc'
 import Modal from 'react-modal'
 import { customStyles } from '../utils/constants'
 import ProfileImageMinter from './Profile/mintingModal/ProfileImageMinter'
-import {
-  BsBookmark,
-  BsBookmarkFill,
-  BsPerson,
-  BsPersonFill,
-} from 'react-icons/bs'
+import { BsBookmark, BsBookmarkFill, BsPerson, BsPersonFill } from 'react-icons/bs'
 import { useTwitterContext } from '../context/TwitterContext'
 
 const style = {
@@ -42,7 +36,6 @@ function Sidebar({ initialSelectedIcon }: SidebarProps) {
   const { currentAccount, currentUser } = useTwitterContext()
   const [selected, setSelected] = useState<String>(initialSelectedIcon)
   const [mint, setMint] = useState<String>("")
-  const router = useRouter()
 
   return (
     <div className={style.wrapper}>

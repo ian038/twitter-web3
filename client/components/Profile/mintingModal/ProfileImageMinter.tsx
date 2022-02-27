@@ -39,16 +39,6 @@ const getEthereumContract = () => {
   return transactionContract
 }
 
-const createPinataRequestHeaders = (headers: Array<HeaderObject>) => {
-  const requestHeaders: HeadersInit = new Headers()
-
-  headers.forEach((header: any) => {
-    requestHeaders.append(header.key, header.value)
-  })
-
-  return requestHeaders
-}
-
 const ProfileImageMinter = ({ setMint }: ProfileImageMinterProps) => {
   const { currentAccount, setAppStatus } = useContext(TwitterContext)
   const router = useRouter()
