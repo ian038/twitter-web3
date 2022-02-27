@@ -13,7 +13,7 @@ const style = {
   visibility: `flex items-center text-[#1d9bf0] text-sm font-bold`,
   visibilityText: `ml-2`,
   mintButton: `bg-white text-black px-3 py-1 rounded-full hover:bg-[#8899a6] cursor-pointer`,
-  inactiveMintButton: `text-black px-3 py-1 rounded-full bg-[#8899a6]`,
+  inactiveMintButton: `text-black px-3 py-1 rounded-full bg-[#8899a6]`
 }
 
 interface InitialStateProps {
@@ -27,8 +27,6 @@ interface InitialStateProps {
 }
 
 const InitialState = ({ profileImage, setProfileImage, name, setName, description, setDescription, mint }: InitialStateProps) => {
-  console.log(profileImage)
-
   return (
     <div className={style.wrapper}>
       <div className={style.inputFieldsContainer}>

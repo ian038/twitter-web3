@@ -20,7 +20,7 @@ const style = {
   profileImageMint: `bg-white text-black px-3 py-1 rounded-full hover:bg-[#8899a6] cursor-pointer`,
   details: `px-3`,
   nav: `flex justify-around mt-4 mb-2 text-xs font-semibold text-[#8899a6]`,
-  activeNav: `text-white`,
+  activeNav: `text-white`
 }
 
 interface Tweets {
@@ -46,7 +46,7 @@ const ProfileHeader = () => {
     coverImage: '',
     walletAddress: '',
     tweets: [],
-    isProfileImageNft: undefined,
+    isProfileImageNft: undefined
   })
 
   useEffect(() => {
@@ -58,7 +58,7 @@ const ProfileHeader = () => {
       walletAddress: currentUser.walletAddress,
       coverImage: currentUser.coverImage,
       tweets: currentUser.tweets,
-      isProfileImageNft: currentUser.isProfileImageNft,
+      isProfileImageNft: currentUser.isProfileImageNft
     })
   }, [currentUser])
 

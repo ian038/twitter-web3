@@ -16,7 +16,7 @@ const style = {
   tweet: `my-2`,
   image: `rounded-3xl`,
   footer: `flex justify-between mr-28 mt-4 text-[#8899a6]`,
-  footerIcon: `rounded-full text-lg p-2`,
+  footerIcon: `rounded-full text-lg p-2`
 }
 
 interface PostProps {
@@ -37,11 +37,7 @@ const Post = ({ displayName, userName, text, avatar, timestamp, isProfileImageNf
         <img
           src={profileImageLink}
           alt={userName}
-          className={
-            isProfileImageNft
-              ? `${style.profileImage} smallHex`
-              : style.profileImage
-          }
+          className={isProfileImageNft ? `${style.profileImage} smallHex` : style.profileImage}
         />
       </div>
       <div className={style.postMain}>

@@ -22,19 +22,19 @@ export const news = [
 ]
   
 export const whoToFollow = [
-    {
-      name: 'Rafeh Qazi',
-      handle: '@cleverqazi',
-      avatar: 'https://pbs.twimg.com/profile_images/1472075657920221184/JhAI3WGm_400x400.jpg'
-    },
-    {
-      name: 'David Rakosi',
-      handle: '@0xDavidRakosi',
-      avatar: 'https://pbs.twimg.com/profile_images/1282571486465855491/98xO6N0F_400x400.jpg'
-    },
-    {
-      name: 'Sanity.io',
-      handle: '@sanity_io',
-      avatar: 'https://avatars.githubusercontent.com/u/17177659?s=280&v=4'
-    }
+  {
+    name: 'Twitter',
+    handle: '@Twitter',
+    avatar: 'https://about.twitter.com/content/dam/about-twitter/en/brand-toolkit/brand-download-img-1.jpg.twimg.1920.jpg'
+  },
+  {
+    name: 'David Rakosi',
+    handle: '@0xDavidRakosi',
+    avatar: 'https://pbs.twimg.com/profile_images/1282571486465855491/98xO6N0F_400x400.jpg'
+  },
+  {
+    name: 'Sanity.io',
+    handle: '@sanity_io',
+    avatar: 'https://avatars.githubusercontent.com/u/17177659?s=280&v=4'
+  }
 ]

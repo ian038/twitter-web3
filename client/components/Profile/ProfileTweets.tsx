@@ -5,7 +5,7 @@ import Post from '../Post'
 const style = {
   wrapper: `no-scrollbar`,
   header: `sticky top-0 bg-[#15202b] z-10 p-4 flex justify-between items-center`,
-  headerTitle: `text-xl font-bold`,
+  headerTitle: `text-xl font-bold`
 }
 
 interface Tweet {
@@ -40,7 +40,7 @@ const ProfileTweets = () => {
       name: currentUser.name,
       profileImage: currentUser.profileImage,
       walletAddress: currentUser.walletAddress,
-      isProfileImageNft: currentUser.isProfileImageNft,
+      isProfileImageNft: currentUser.isProfileImageNft
     })
   }, [currentUser])
 
@@ -49,18 +49,8 @@ const ProfileTweets = () => {
       {tweets?.map((tweet: Tweet, index: number) => (
         <Post
           key={index}
-          displayName={
-            author.name === 'Unnamed'
-              ? `${author.walletAddress.slice(
-                  0,
-                  4,
-                )}...${author.walletAddress.slice(41)}`
-              : author.name
-          }
-          userName={`${author.walletAddress.slice(
-            0,
-            4,
-          )}...${author.walletAddress.slice(41)}`}
+          displayName={author.name === 'Unnamed' ? `${author.walletAddress.slice(0, 4)}...${author.walletAddress.slice(41)}` : author.name}
+          userName={`${author.walletAddress.slice(0, 4)}...${author.walletAddress.slice(41)}`}
           text={tweet.tweet}
           avatar={author.profileImage}
           timestamp={tweet.timestamp}

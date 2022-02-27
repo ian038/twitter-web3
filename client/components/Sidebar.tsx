@@ -31,7 +31,7 @@ const style = {
   details: `flex-1`,
   name: `text-lg`,
   handle: `text-[#8899a6]`,
-  moreContainer: `flex items-center mr-2`,
+  moreContainer: `flex items-center mr-2`
 }
 
 interface SidebarProps {
@@ -41,6 +41,7 @@ interface SidebarProps {
 function Sidebar({ initialSelectedIcon }: SidebarProps) {
   const { currentAccount, currentUser } = useTwitterContext()
   const [selected, setSelected] = useState<String>(initialSelectedIcon)
+  const [mint, setMint] = useState<String>("")
   const router = useRouter()
 
   return (
@@ -95,7 +96,7 @@ function Sidebar({ initialSelectedIcon }: SidebarProps) {
         />
         <SidebarOption Icon={CgMoreO} text='More' />
         <div
-          onClick={() => router.push(`${router.pathname}/?mint=${currentAccount}`)}
+          onClick={() => setMint(currentAccount)}
           className={style.tweetButton}
         >
           Mint
@@ -106,11 +107,7 @@ function Sidebar({ initialSelectedIcon }: SidebarProps) {
           <img
             src={currentUser.profileImage}
             alt='profile'
-            className={
-              currentUser.isProfileImageNft
-                ? `${style.profileImage} smallHex`
-                : style.profileImage
-            }
+            className={currentUser.isProfileImageNft ? `${style.profileImage} smallHex` : style.profileImage}
           />
         </div>
         <div className={style.profileRight}>
@@ -127,11 +124,11 @@ function Sidebar({ initialSelectedIcon }: SidebarProps) {
       </div>
 
       <Modal
-        isOpen={Boolean(router.query.mint)}
-        onRequestClose={() => router.back()}
+        isOpen={mint !== ""}
+        onRequestClose={() => setMint("")}
         style={customStyles}
       >
-        <ProfileImageMinter />
+        <ProfileImageMinter setMint={setMint} />
       </Modal>
     </div>
   )

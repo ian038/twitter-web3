@@ -20,7 +20,7 @@ const style = {
   profileDetails: `flex-1`,
   name: `font-bold`,
   handle: `text-[#8899a6]`,
-  followButton: `bg-white text-black px-3 py-1 rounded-full text-xs font-bold`,
+  followButton: `bg-white text-black px-3 py-1 rounded-full text-xs font-bold`
 }
 
 function Widgets() {

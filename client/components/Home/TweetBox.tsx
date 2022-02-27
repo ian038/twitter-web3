@@ -17,7 +17,7 @@ const style = {
   icon: `mr-2`,
   submitGeneral: `px-6 py-2 rounded-3xl font-bold`,
   inactiveSubmit: `bg-[#196195] text-[#95999e]`,
-  activeSubmit: `bg-[#1d9bf0] text-white`,
+  activeSubmit: `bg-[#1d9bf0] text-white`
 }
 
 function TweetBox() {
@@ -38,8 +38,8 @@ function TweetBox() {
       author: {
         _key: tweetId,
         _ref: currentAccount,
-        _type: 'reference',
-      },
+        _type: 'reference'
+      }
     }
 
     await client.createIfNotExists(tweetDoc)
@@ -51,8 +51,8 @@ function TweetBox() {
         {
           _key: tweetId,
           _ref: tweetId,
-          _type: 'reference',
-        },
+          _type: 'reference'
+        }
       ])
       .commit()
 
@@ -65,11 +65,7 @@ function TweetBox() {
       <div className={style.tweetBoxLeft}>
         <img
           src={currentUser.profileImage}
-          className={
-            currentUser.isProfileImageNft
-              ? `${style.profileImage} smallHex`
-              : style.profileImage
-          }
+          className={currentUser.isProfileImageNft ? `${style.profileImage} smallHex` : style.profileImage}
         />
       </div>
       <div className={style.tweetBoxRight}>
@@ -93,9 +89,7 @@ function TweetBox() {
               type='submit'
               onClick={e => submitTweet(e)}
               disabled={!tweetMessage}
-              className={`${style.submitGeneral} ${
-                tweetMessage ? style.activeSubmit : style.inactiveSubmit
-              }`}
+              className={`${style.submitGeneral} ${tweetMessage ? style.activeSubmit : style.inactiveSubmit}`}
             >
               Tweet
             </button>
